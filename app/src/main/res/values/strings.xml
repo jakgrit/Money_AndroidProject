@@ -13,4 +13,10 @@
     <string name="menu_debtor">Debtor</string>
     <string name="menu_menu">Menu</string>
 
+    <string name="add_name">Name</string>
+    <string name="add_surname">Surname</string>
+    <string name="add_amount">Amount</string>
+    <string name="add_save">Save</string>
+    <string name="add_cancel">Cancel</string>
+
 </resources>

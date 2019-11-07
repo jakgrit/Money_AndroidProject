@@ -23,7 +23,11 @@
         android:id="@+id/listFragment"
         android:name="com.example.money.list.ListFragment"
         android:label="fragment_list"
-        tools:layout="@layout/fragment_list" />
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/action_listFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
     <fragment
         android:id="@+id/menuFragment"
         android:name="com.example.money.menu.MenuFragment"
@@ -43,10 +47,18 @@
         android:id="@+id/debtorFragment"
         android:name="com.example.money.debtor.DebtorFragment"
         android:label="fragment_debtor"
-        tools:layout="@layout/fragment_debtor" />
+        tools:layout="@layout/fragment_debtor" >
+        <action
+            android:id="@+id/action_debtorFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addFragment"
         android:name="com.example.money.add.AddFragment"
         android:label="fragment_add"
-        tools:layout="@layout/fragment_add" />
+        tools:layout="@layout/fragment_add" >
+        <action
+            android:id="@+id/action_addFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
 </navigation>
