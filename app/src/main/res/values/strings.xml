@@ -19,4 +19,8 @@
     <string name="add_save">Save</string>
     <string name="add_cancel">Cancel</string>
 
+    <string name="about_text">About</string>
+    <string name="about_name">Jakgrit Chuenboon</string>
+    <string name="about_id">59160002</string>
+
 </resources>
