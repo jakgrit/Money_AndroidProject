@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 
 import com.example.money.R
 import com.example.money.databinding.FragmentLoginBinding
@@ -21,6 +22,9 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = DataBindingUtil.inflate<FragmentLoginBinding>(inflater,R.layout.fragment_login,container,false)
+        binding.loginBtn.setOnClickListener { thisView ->
+            thisView.findNavController().navigate(R.id.action_loginFragment_to_menuFragment)
+        }
         return binding.root
     }
 

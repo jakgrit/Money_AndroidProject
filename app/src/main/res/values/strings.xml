@@ -7,4 +7,10 @@
     <string name="login_password_text">Password</string>
     <string name="login_login_btn">Login</string>
     <string name="login_lg_text">LOGIN</string>
+    <string name="list_text">List</string>
+    <string name="menu_add">Add</string>
+    <string name="menu_detail">Detail</string>
+    <string name="menu_debtor">Debtor</string>
+    <string name="menu_menu">Menu</string>
+
 </resources>
