@@ -40,7 +40,9 @@ class AboutFragment : Fragment() {
             R.id.share -> shareSuccess()
         }
 
-        return super.onOptionsItemSelected(item)
+        return NavigationUI.onNavDestinationSelected(item!!, view!!.findNavController()) || super.onOptionsItemSelected(item)
+
+//        return super.onOptionsItemSelected(item)
     }
 
     private fun getShareIntent() : Intent {

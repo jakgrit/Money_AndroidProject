@@ -7,6 +7,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.money.R
 import com.example.money.databinding.FragmentAddBinding
 
@@ -44,7 +45,8 @@ class AddFragment : Fragment() {
             R.id.share -> shareSuccess()
         }
 
-        return super.onOptionsItemSelected(item)
+//        return super.onOptionsItemSelected(item)
+        return NavigationUI.onNavDestinationSelected(item!!, view!!.findNavController()) || super.onOptionsItemSelected(item)
     }
 
     private fun getShareIntent() : Intent {
