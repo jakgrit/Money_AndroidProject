@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.money.R
@@ -15,6 +16,8 @@ import com.example.money.databinding.FragmentAddBinding
  * A simple [Fragment] subclass.
  */
 class AddFragment : Fragment() {
+
+    private lateinit var viewModel: AddViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +30,9 @@ class AddFragment : Fragment() {
                 thisView.findNavController().navigate(R.id.action_addFragment_to_menuFragment)
             }
         }
+
+        viewModel = ViewModelProviders.of(this).get(AddViewModel::class.java)
+
         setHasOptionsMenu(true)
         return binding.root
     }
