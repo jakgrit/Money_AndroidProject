@@ -10,11 +10,11 @@ data class Person(
     var personId: Long = 0L,
 
     @ColumnInfo(name = "firstName")
-    val firstName: String,
+    val firstName: String?,
 
     @ColumnInfo(name = "lastName")
-    val lastName: String,
+    val lastName: String?,
 
     @ColumnInfo(name = "amount")
-    val amount: Double
+    val amount: Double?
 )
