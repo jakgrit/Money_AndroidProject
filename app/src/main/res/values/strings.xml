@@ -24,5 +24,6 @@
     <string name="about_id">59160002</string>
 
     <string name="share">Share</string>
+    <string name="logout">Logout</string>
 
 </resources>

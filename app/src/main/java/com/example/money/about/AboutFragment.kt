@@ -23,7 +23,6 @@ class AboutFragment : Fragment() {
     ): View? {
         val binding = DataBindingUtil.inflate<FragmentAboutBinding>(inflater,R.layout.fragment_about,container,false)
         setHasOptionsMenu(true)
-        val args = AboutFragmentArgs.fromBundle(arguments!!)
         return binding.root
     }
 
@@ -32,16 +31,11 @@ class AboutFragment : Fragment() {
         inflater?.inflate(R.menu.drop_menu, menu)
 
         if (null == getShareIntent().resolveActivity(activity!!.packageManager)) {
-            // hide the menu item if it doesn't resolve
             menu?.findItem(R.id.share)?.setVisible(false)
         }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        return NavigationUI.onNavDestinationSelected(item!!,
-//            view!!.findNavController())
-//                || super.onOptionsItemSelected(item)
-
         when (item!!.itemId) {
             R.id.share -> shareSuccess()
         }
@@ -50,7 +44,6 @@ class AboutFragment : Fragment() {
     }
 
     private fun getShareIntent() : Intent {
-        val args = AboutFragmentArgs.fromBundle(arguments!!)
         val shareIntent = Intent(Intent.ACTION_SEND)
         shareIntent.setType("text/plain")
             .putExtra(Intent.EXTRA_TEXT,"Shared")
