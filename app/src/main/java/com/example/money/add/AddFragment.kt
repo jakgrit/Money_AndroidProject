@@ -4,12 +4,16 @@ package com.example.money.add
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.money.R
+import com.example.money.database.PersonDatabase
 import com.example.money.databinding.FragmentAddBinding
 
 /**
@@ -17,40 +21,37 @@ import com.example.money.databinding.FragmentAddBinding
  */
 class AddFragment : Fragment() {
 
-    private lateinit var viewModel: AddViewModel
+    private lateinit var addViewModel: AddViewModel
+    private lateinit var binding: FragmentAddBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val binding = DataBindingUtil.inflate<FragmentAddBinding>(inflater, R.layout.fragment_add, container, false)
+        this.binding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_add, container, false)
 
-        viewModel = ViewModelProviders.of(this).get(AddViewModel::class.java)
+        val application = (this.activity)!!.application
+        val dataSource = PersonDatabase.getInstance(application).personDatabaseDao
+        val viewModelFactory = AddViewModelFactory(dataSource,application)
 
-        binding.apply {
-            saveBtn.setOnClickListener {
-                storeTxt(binding)
+        addViewModel = ViewModelProviders.of(this, viewModelFactory)
+            .get(AddViewModel::class.java)
+
+        addViewModel.addComplete.observe(this, Observer {
+            if(it){
+                Toast.makeText(activity,"Add Success", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(
+                    AddFragmentDirections
+                        .actionAddFragmentToMenuFragment())
             }
-            cancelBtn.setOnClickListener { thisView ->
-                thisView.findNavController().navigate(R.id.action_addFragment_to_menuFragment)
-            }
-        }
+        })
 
         setHasOptionsMenu(true)
+
+        binding.lifecycleOwner = this
         return binding.root
-    }
-
-    private fun storeTxt(fragmentAdd: FragmentAddBinding) {
-        val first_name = fragmentAdd.firstnameTxt.text.toString()
-        val last_name = fragmentAdd.lastnameTxt.text.toString()
-        val amout = fragmentAdd.amoutTxt.text.toString().toDouble()
-
-        viewModel.testLog()
-
-        viewModel.first_name = first_name
-        viewModel.last_name = last_name
-        viewModel.amout = amout
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
