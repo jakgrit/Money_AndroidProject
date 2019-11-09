@@ -25,16 +25,32 @@ class AddFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val binding = DataBindingUtil.inflate<FragmentAddBinding>(inflater, R.layout.fragment_add, container, false)
+
+        viewModel = ViewModelProviders.of(this).get(AddViewModel::class.java)
+
         binding.apply {
+            saveBtn.setOnClickListener {
+                storeTxt(binding)
+            }
             cancelBtn.setOnClickListener { thisView ->
                 thisView.findNavController().navigate(R.id.action_addFragment_to_menuFragment)
             }
         }
 
-        viewModel = ViewModelProviders.of(this).get(AddViewModel::class.java)
-
         setHasOptionsMenu(true)
         return binding.root
+    }
+
+    private fun storeTxt(fragmentAdd: FragmentAddBinding) {
+        val first_name = fragmentAdd.firstnameTxt.text.toString()
+        val last_name = fragmentAdd.lastnameTxt.text.toString()
+        val amout = fragmentAdd.amoutTxt.text.toString().toDouble()
+
+        viewModel.testLog()
+
+        viewModel.first_name = first_name
+        viewModel.last_name = last_name
+        viewModel.amout = amout
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
