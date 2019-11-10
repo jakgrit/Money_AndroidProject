@@ -35,7 +35,6 @@ class AddFragment : Fragment() {
         val application = (this.activity)?.application
         val dataSource = application?.let { PersonDatabase.getInstance(it).personDatabaseDao }
         val viewModelFactory = dataSource?.let { AddViewModelFactory(it,application) }
-//        val viewModelFactory = application?.let { dataSource?.let { it1 -> AddViewModelFactory(it1, it) } }
 
         addViewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(AddViewModel::class.java)
@@ -49,39 +48,16 @@ class AddFragment : Fragment() {
             }
         })
 
-        setHasOptionsMenu(true)
+        addViewModel.goBackToMenu.observe(this, Observer {
+            if (it){
+                findNavController().navigate(
+                    AddFragmentDirections
+                    .actionAddFragmentToMenuFragment())
+            }
+        })
 
         binding.addViewModel = addViewModel
         binding.lifecycleOwner = this
         return binding.root
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater?.inflate(R.menu.drop_menu, menu)
-
-        if (null == getShareIntent().resolveActivity(activity!!.packageManager)) {
-            menu?.findItem(R.id.share)?.setVisible(false)
-        }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item!!.itemId) {
-            R.id.share -> shareSuccess()
-        }
-
-//        return super.onOptionsItemSelected(item)
-        return NavigationUI.onNavDestinationSelected(item!!, view!!.findNavController()) || super.onOptionsItemSelected(item)
-    }
-
-    private fun getShareIntent() : Intent {
-        val shareIntent = Intent(Intent.ACTION_SEND)
-        shareIntent.setType("text/plain")
-            .putExtra(Intent.EXTRA_TEXT,"Shared")
-        return shareIntent
-    }
-
-    private fun shareSuccess() {
-        startActivity(getShareIntent())
     }
 }

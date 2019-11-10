@@ -23,37 +23,7 @@ class ListFragment : Fragment() {
         // Inflate the layout for this fragment
         val binding = DataBindingUtil.inflate<FragmentListBinding>(inflater, R.layout.fragment_list, container, false)
 
-        setHasOptionsMenu(true)
         return binding.root
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater?.inflate(R.menu.drop_menu, menu)
-
-        if (null == getShareIntent().resolveActivity(activity!!.packageManager)) {
-            menu?.findItem(R.id.share)?.setVisible(false)
-        }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item!!.itemId) {
-            R.id.share -> shareSuccess()
-        }
-
-//        return super.onOptionsItemSelected(item)
-        return NavigationUI.onNavDestinationSelected(item!!, view!!.findNavController()) || super.onOptionsItemSelected(item)
-    }
-
-    private fun getShareIntent() : Intent {
-        val shareIntent = Intent(Intent.ACTION_SEND)
-        shareIntent.setType("text/plain")
-            .putExtra(Intent.EXTRA_TEXT,"Shared")
-        return shareIntent
-    }
-
-    private fun shareSuccess() {
-        startActivity(getShareIntent())
     }
 
 }

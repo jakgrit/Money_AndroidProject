@@ -22,6 +22,10 @@ class AddViewModel(
     val addComplete: LiveData<Boolean>
         get() = _addComplete
 
+    private val _goBackToMenu = MutableLiveData<Boolean>()
+    val goBackToMenu: LiveData<Boolean>
+        get() = _goBackToMenu
+
     var fname = MutableLiveData<String>()
     var lname = MutableLiveData<String>()
     var amout = MutableLiveData<String>()
@@ -45,6 +49,10 @@ class AddViewModel(
                 Log.i("SaveToDB", "Success")
             }
         }
+    }
+
+    fun clickBack(){
+        _goBackToMenu.value = true
     }
 
     private fun checkInputNull(): Boolean{

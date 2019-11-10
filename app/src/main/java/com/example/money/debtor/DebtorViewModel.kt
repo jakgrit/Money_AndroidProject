@@ -19,8 +19,8 @@ class DebtorViewModel (
     val personAll = database.getAllPersons()
 
     init {
-        Log.i("DebtorViewModel", "Craeted")
-        initializeGameScore()
+        Log.i("DebtorViewModel", "Craeted!!")
+        initializePerson()
     }
 
     override fun onCleared() {
@@ -28,13 +28,13 @@ class DebtorViewModel (
         viewModelJob.cancel()
     }
 
-    private fun initializeGameScore() {
+    private fun initializePerson() {
         uiScope.launch {
-            perSon.value = getGameScoreFromDatabase()
+            perSon.value = getPersonFromDatabase()
         }
     }
 
-    private suspend fun getGameScoreFromDatabase(): Person? {
+    private suspend fun getPersonFromDatabase(): Person? {
         return withContext(Dispatchers.IO) {
             var personAll = database.getPerson()
             personAll

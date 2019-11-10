@@ -30,14 +30,12 @@ class DebtorPersonAdapter: RecyclerView.Adapter<TextItemViewHolder>() {
 
     override fun onBindViewHolder(holder: TextItemViewHolder, position: Int) {
 
-        holder.textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24F)
+        holder.textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16F)
         val item = data[position]
 
-        Log.i("ShowHS", "${item.firstName}")
+        holder.textView.text = "\t${item.firstName}     ---     ${item.lastName}\n"
 
-        holder.textView.text = "\t${item.firstName}   -    ${item.lastName}\n"
-
-        holder.textView.setTextColor(Color.BLACK)
+        holder.textView.setTextColor(Color.parseColor("#D4AC0D"))
 
     }
 
