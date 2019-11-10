@@ -32,9 +32,10 @@ class AddFragment : Fragment() {
         this.binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_add, container, false)
 
-        val application = (this.activity)!!.application
-        val dataSource = PersonDatabase.getInstance(application).personDatabaseDao
-        val viewModelFactory = AddViewModelFactory(dataSource,application)
+        val application = (this.activity)?.application
+        val dataSource = application?.let { PersonDatabase.getInstance(it).personDatabaseDao }
+        val viewModelFactory = dataSource?.let { AddViewModelFactory(it,application) }
+//        val viewModelFactory = application?.let { dataSource?.let { it1 -> AddViewModelFactory(it1, it) } }
 
         addViewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(AddViewModel::class.java)
@@ -50,6 +51,7 @@ class AddFragment : Fragment() {
 
         setHasOptionsMenu(true)
 
+        binding.addViewModel = addViewModel
         binding.lifecycleOwner = this
         return binding.root
     }
