@@ -43,6 +43,12 @@
         <action
             android:id="@+id/action_menuFragment_to_addFragment"
             app:destination="@id/addFragment" />
+        <argument
+            android:name="userName"
+            app:argType="string" />
+        <argument
+            android:name="passWord"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/debtorFragment"

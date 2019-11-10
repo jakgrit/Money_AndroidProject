@@ -44,7 +44,7 @@ class AddFragment : Fragment() {
                 Toast.makeText(activity,"Add Success", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(
                     AddFragmentDirections
-                        .actionAddFragmentToMenuFragment())
+                        .actionAddFragmentToMenuFragment("",""))
             }
         })
 
@@ -52,7 +52,7 @@ class AddFragment : Fragment() {
             if (it){
                 findNavController().navigate(
                     AddFragmentDirections
-                    .actionAddFragmentToMenuFragment())
+                    .actionAddFragmentToMenuFragment("",""))
             }
         })
 

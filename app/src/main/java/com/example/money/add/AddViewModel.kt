@@ -32,6 +32,7 @@ class AddViewModel(
 
     init {
         Log.i("initViewModel", "InitAddViewModel")
+        _goBackToMenu.value = false
     }
 
     override fun onCleared() {
