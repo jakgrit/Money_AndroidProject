@@ -56,7 +56,7 @@ class MenuFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item!!.itemId) {
+        when (item.itemId) {
             R.id.share -> shareSuccess()
         }
 

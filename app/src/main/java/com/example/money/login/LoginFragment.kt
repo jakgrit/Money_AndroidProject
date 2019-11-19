@@ -41,9 +41,9 @@ class LoginFragment : Fragment() {
         loginViewModel.checkLogin.observe(this, Observer<Boolean> { hasFinished ->
             if(hasFinished) findNavController().navigate(
                 LoginFragmentDirections.actionLoginFragmentToMenuFragment(
-                    userName = this.usernameTxt.text.toString(),
-                    passWord = this.passwordTxt.text.toString(),
-                    status = 0
+                    loginViewModel.userName.value.toString(),
+                    loginViewModel.passWord.value.toString(),
+                    0
                 )
             ) else{
                 Toast.makeText(this.context, "Login Failed", Toast.LENGTH_SHORT).show()
