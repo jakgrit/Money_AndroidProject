@@ -42,13 +42,12 @@ class AboutFragment : Fragment() {
 
         return NavigationUI.onNavDestinationSelected(item!!, view!!.findNavController()) || super.onOptionsItemSelected(item)
 
-//        return super.onOptionsItemSelected(item)
     }
 
     private fun getShareIntent() : Intent {
         val shareIntent = Intent(Intent.ACTION_SEND)
         shareIntent.setType("text/plain")
-            .putExtra(Intent.EXTRA_TEXT,"Shared")
+            .putExtra(Intent.EXTRA_TEXT,"สวัสดีครับอาจารย์กบ")
         return shareIntent
     }
 

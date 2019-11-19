@@ -18,7 +18,7 @@ class LoginViewModel (
     var userName = MutableLiveData<String>()
     var passWord = MutableLiveData<String>()
 
-    val _checkLogin = MutableLiveData<Boolean>()
+    private val _checkLogin = MutableLiveData<Boolean>()
     val checkLogin: LiveData<Boolean>
         get() = _checkLogin
 
