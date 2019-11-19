@@ -13,10 +13,23 @@ class ListViewModel (
     application: Application
 ): AndroidViewModel(application){
     private var viewModelJob = Job()
+    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     val personAll = database.getAllPersons()
 
     init {
         Log.i("DebtorViewModel", "Craeted!!")
+    }
+
+    fun clearDB(){
+        uiScope.launch {
+            clearDatabase()
+        }
+    }
+
+    private suspend fun clearDatabase() {
+        withContext(Dispatchers.IO){
+            database.clear()
+        }
     }
 }

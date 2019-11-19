@@ -29,8 +29,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/viewShow"
-            android:layout_width="0dp"
-            android:layout_height="500dp"
+            android:layout_width="352dp"
+            android:layout_height="415dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
@@ -39,6 +39,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <Button
+            android:id="@+id/button"
+            style="@style/login_login_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="64dp"
+            android:text="@string/clear_btn"
+            android:onClick="@{ ()-> debtorViewModel.clearDB() }"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewShow" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

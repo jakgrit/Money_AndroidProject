@@ -13,6 +13,7 @@ class DebtorViewModel (
     application: Application
 ): AndroidViewModel(application) {
     private var viewModelJob = Job()
+    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     val personAll = database.getAllPersons()
 
@@ -23,6 +24,18 @@ class DebtorViewModel (
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
+    }
+
+    fun clearDB(){
+        uiScope.launch {
+            clearDatabase()
+        }
+    }
+
+    private suspend fun clearDatabase() {
+        withContext(Dispatchers.IO){
+            database.clear()
+        }
     }
 
 }
