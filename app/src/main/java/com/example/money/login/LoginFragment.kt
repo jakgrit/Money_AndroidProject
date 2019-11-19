@@ -39,15 +39,13 @@ class LoginFragment : Fragment() {
         binding.lifecycleOwner = this
 
         loginViewModel.checkLogin.observe(this, Observer<Boolean> { hasFinished ->
-            if(hasFinished){
-                findNavController().navigate(
-                    LoginFragmentDirections.actionLoginFragmentToMenuFragment(
-                        usernameTxt.text.toString(),
-                        passwordTxt.text.toString(),
-                        0
-                    )
+            if(hasFinished) findNavController().navigate(
+                LoginFragmentDirections.actionLoginFragmentToMenuFragment(
+                    userName = this.usernameTxt.text.toString(),
+                    passWord = this.passwordTxt.text.toString(),
+                    status = 0
                 )
-            }else{
+            ) else{
                 Toast.makeText(this.context, "Login Failed", Toast.LENGTH_SHORT).show()
             }
         })

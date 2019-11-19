@@ -34,9 +34,6 @@ class LoginViewModel (
     }
 
     fun checkLogin(){
-        if(checkUserPass()){
-            _checkLogin.value = true
-        }
-        _checkLogin.value = false
+        _checkLogin.value = checkUserPass()
     }
 }
