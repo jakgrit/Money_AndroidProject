@@ -13,32 +13,16 @@ class DebtorViewModel (
     application: Application
 ): AndroidViewModel(application) {
     private var viewModelJob = Job()
-    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    private var perSon = MutableLiveData<Person?>()
     val personAll = database.getAllPersons()
 
     init {
         Log.i("DebtorViewModel", "Craeted!!")
-        initializePerson()
     }
 
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
-    }
-
-    private fun initializePerson() {
-        uiScope.launch {
-            perSon.value = getPersonFromDatabase()
-        }
-    }
-
-    private suspend fun getPersonFromDatabase(): Person? {
-        return withContext(Dispatchers.IO) {
-            var personAll = database.getPerson()
-            personAll
-        }
     }
 
 }

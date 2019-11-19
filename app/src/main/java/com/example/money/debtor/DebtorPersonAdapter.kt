@@ -30,7 +30,7 @@ class DebtorPersonAdapter: RecyclerView.Adapter<TextItemViewHolder>() {
 
     override fun onBindViewHolder(holder: TextItemViewHolder, position: Int) {
 
-        holder.textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16F)
+        holder.textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14F)
         val item = data[position]
 
         holder.textView.text = "\t${item.firstName}     ---     ${item.lastName}\n"

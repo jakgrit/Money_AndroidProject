@@ -24,16 +24,14 @@ import kotlinx.android.synthetic.main.fragment_login.*
 class LoginFragment : Fragment() {
 
     private lateinit var loginViewModel: LoginViewModel
+    private lateinit var binding: FragmentLoginBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = DataBindingUtil.inflate<FragmentLoginBinding>(inflater,R.layout.fragment_login,container,false)
-//        binding.loginBtn.setOnClickListener { thisView ->
-//            thisView.findNavController().navigate(R.id.action_loginFragment_to_menuFragment)
-//            Toast.makeText(activity, "Login_Success!!", Toast.LENGTH_SHORT).show()
-//        }
+
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_login,container,false)
 
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
 
@@ -45,14 +43,15 @@ class LoginFragment : Fragment() {
                 findNavController().navigate(
                     LoginFragmentDirections.actionLoginFragmentToMenuFragment(
                         usernameTxt.text.toString(),
-                        passwordTxt.text.toString()
+                        passwordTxt.text.toString(),
+                        0
                     )
                 )
+            }else{
+                Toast.makeText(this.context, "Login Failed", Toast.LENGTH_SHORT).show()
             }
         })
 
-
-//        Log.i("onCreateView", "LoginView")
         return binding.root
     }
 }

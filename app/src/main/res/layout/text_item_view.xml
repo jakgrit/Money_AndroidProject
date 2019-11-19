@@ -4,4 +4,9 @@
     android:textSize="16sp"
     android:paddingStart="16dp"
     android:paddingEnd="16dp"
-    android:layout_width="match_parent" android:layout_height="wrap_content" />
+    android:layout_marginTop="16dp"
+    android:layout_marginLeft="56dp"
+    android:layout_marginRight="56dp"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+
+    />

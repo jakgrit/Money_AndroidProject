@@ -15,6 +15,9 @@ class LoginViewModel (
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
+    var userName = MutableLiveData<String>()
+    var passWord = MutableLiveData<String>()
+
     val _checkLogin = MutableLiveData<Boolean>()
     val checkLogin: LiveData<Boolean>
         get() = _checkLogin
@@ -23,7 +26,17 @@ class LoginViewModel (
         _checkLogin.value = false
     }
 
+    private fun checkUserPass(): Boolean{
+        if (userName.value == "admin" && passWord.value == "12345"){
+            return true
+        }
+        return false
+    }
+
     fun checkLogin(){
-        _checkLogin.value = true
+        if(checkUserPass()){
+            _checkLogin.value = true
+        }
+        _checkLogin.value = false
     }
 }

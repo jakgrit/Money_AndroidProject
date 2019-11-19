@@ -42,22 +42,22 @@ class AddFragment : Fragment() {
         addViewModel.addComplete.observe(this, Observer {
             if(it){
                 Toast.makeText(activity,"Add Success", Toast.LENGTH_SHORT).show()
-                findNavController().navigate(
-                    AddFragmentDirections
-                        .actionAddFragmentToMenuFragment("",""))
+                goBack()
             }
         })
 
         addViewModel.goBackToMenu.observe(this, Observer {
             if (it){
-                findNavController().navigate(
-                    AddFragmentDirections
-                    .actionAddFragmentToMenuFragment("",""))
+                goBack()
             }
         })
 
         binding.addViewModel = addViewModel
         binding.lifecycleOwner = this
         return binding.root
+    }
+
+    private fun goBack(){
+        return findNavController().navigate(AddFragmentDirections.actionAddFragmentToMenuFragment("", "", 1))
     }
 }

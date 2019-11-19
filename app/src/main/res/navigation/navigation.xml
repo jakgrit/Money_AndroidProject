@@ -49,6 +49,9 @@
         <argument
             android:name="passWord"
             app:argType="string" />
+        <argument
+            android:name="status"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/debtorFragment"
